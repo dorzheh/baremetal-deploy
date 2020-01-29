@@ -213,21 +213,22 @@ func checkRxTx(out string) {
 	for i := 0; i < len(str); i++ {
 		if strings.Contains(str[i], "all ports") {
 			i++
-			r := strings.Fields(str[i])
-			Expect(len(r)).To(Equal(6), "the slice doesn't contain 6 elements")
-			d, err := strconv.Atoi(r[5])
-			Expect(err).ToNot(HaveOccurred())
-			Expect(d).Should(BeNumerically(">", 0), "number of received packets should be greater then 0")
+			d := getNumberOfPackets(str, i)
+			Expect(d).Should(BeNumerically(">", 0), "number of received packets should be greater than 0")
 
 			i++
-			r = strings.Fields(str[i])
-			Expect(len(r)).To(Equal(6), "the slice doesn't contain 6 elements")
-			d, err = strconv.Atoi(r[5])
-			Expect(err).ToNot(HaveOccurred())
-			Expect(d).Should(BeNumerically(">", 0), "number of transferred packets should be greater then 0")
-
+	        d = getNumberOfPackets(str, i)
+			Expect(d).Should(BeNumerically(">", 0), "number of transferred packets should be greater than 0")
 		}
 	}
+}
+
+func getNumberOfPackets(s []string, index int) int {
+	r := strings.Fields(s[index])
+	Expect(len(r)).To(Equal(6), "the slice doesn't contain 6 elements")
+	d, err := strconv.Atoi(r[5])
+	Expect(err).ToNot(HaveOccurred())
+    return d
 }
 
 func beforeAll(fn func()) {
