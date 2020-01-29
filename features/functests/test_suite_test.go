@@ -12,6 +12,7 @@ import (
 	_ "github.com/openshift-kni/baremetal-deploy/features/functests/performance" // this is needed otherwise the performance test won't be executed
 	_ "github.com/openshift-kni/baremetal-deploy/features/functests/ptp"         // this is needed otherwise the ptp test won't be executed
 	_ "github.com/openshift-kni/baremetal-deploy/features/functests/sctp"        // this is needed otherwise the sctp test won't be executed
+	_ "github.com/openshift-kni/baremetal-deploy/features/functests/dpdk"        // this is needed otherwise the dpdk test won't be executed
 
 	"github.com/openshift-kni/baremetal-deploy/features/functests/utils/clients"
 )
